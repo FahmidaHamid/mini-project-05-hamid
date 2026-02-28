@@ -31,6 +31,7 @@ const SignUp = () => {
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevents page reload
     console.log("Form Submitted:", formData);
+    
     createUserWithEmailAndPassword(auth, formData.email, formData.password)
       .then((userCredential) => {
         // Signed up
@@ -57,6 +58,7 @@ const SignUp = () => {
         // The signed-in user info.
         const user = result.user;
         console.log(user.displayName);
+
         //console.log(token);
         // IdP data available using getAdditionalUserInfo(result)
         // ...
