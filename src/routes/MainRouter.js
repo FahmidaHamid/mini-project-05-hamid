@@ -3,6 +3,10 @@ import Home from "../components/Home";
 import Root from "../layout/Root";
 import SignUp from "../components/SignUp";
 import Login from "../components/Login";
+import Users from "../components/Users";
+import Posts from "../components/Posts";
+import PostDetails from "../components/PostDetails";
+import { postDetailsLoader, postsLoader, usersLoader } from "../utils/loaders";
 
 const MainRouter = [
   {
@@ -13,6 +17,13 @@ const MainRouter = [
       { path: "/aboutus", Component: AboutUs },
       { path: "/signup", Component: SignUp },
       { path: "/login", Component: Login },
+      { path: "/users", Component: Users, loader: usersLoader },
+      { path: "/posts", Component: Posts, loader: postsLoader },
+      {
+        path: "/posts/:id",
+        Component: PostDetails,
+        loader: postDetailsLoader,
+      },
     ],
   },
 ];

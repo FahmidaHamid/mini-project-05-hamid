@@ -20,11 +20,15 @@ const Home = () => {
 
   return (
     <div>
-      <h1>This is home...for the following users:</h1>
+      <h1 className="text-xl font bold p-2">
+        This page demonstrates how to load data for a component...
+      </h1>
       {error && <p className="text-red-400">{error.message}</p>}
-      <ul>
+      <ul className="p-3">
         {users.map((user) => (
-          <li key={user.id}>{user.name}</li>
+          <li key={user.id} className="text-lg text-purple-500">
+            {user.name}
+          </li>
         ))}
       </ul>
     </div>

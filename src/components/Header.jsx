@@ -7,6 +7,8 @@ const Header = () => {
     <NavLink to="/aboutus">About Us</NavLink>,
     <NavLink to="/login">Login</NavLink>,
     <NavLink to="/signup">SignUp</NavLink>,
+    <NavLink to="/users">Users</NavLink>,
+    <NavLink to="/posts">Posts</NavLink>,
   ];
 
   return (

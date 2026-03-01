@@ -10,6 +10,9 @@ const router = createBrowserRouter(MainRouter);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider
+      router={router}
+      hydrateFallbackElement={() => <h1>Loading...</h1>}
+    />
   </StrictMode>,
 );
