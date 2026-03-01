@@ -7,8 +7,8 @@ const Posts = () => {
   return (
     <div className="m-3 p-2">
       <h2 className="text-xl text-green-500">
-        Posts are loaded use <b>useLoaderData</b>, loader defined in the
-        MainRoute{" "}
+        Posts are loaded by <b>useLoaderData</b>, the loader function is defined
+        in the utiliy file and called in the MainRoute
       </h2>
       <ul className="m-5 p-5">
         {posts.map((post) => (
