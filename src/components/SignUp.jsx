@@ -1,17 +1,12 @@
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-
-import {
-  signInWithPopup,
-  GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
-import { auth } from "../firebase/firebase.config";
+// import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router";
-
-const googleProvider = new GoogleAuthProvider();
+import { AuthContext } from "../contexts/AuthContext";
 
 const SignUp = () => {
+  const { user, setUser, signInWithGoogle, createUser } = use(AuthContext);
+
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -31,8 +26,9 @@ const SignUp = () => {
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevents page reload
     console.log("Form Submitted:", formData);
-    
-    createUserWithEmailAndPassword(auth, formData.email, formData.password)
+
+    // createUserWithEmailAndPassword(auth, formData.email, formData.password)
+    createUser(formData.email, formData.password)
       .then((userCredential) => {
         // Signed up
         const user = userCredential.user;
@@ -50,14 +46,20 @@ const SignUp = () => {
   };
 
   const handleGoogleSignUp = () => {
-    signInWithPopup(auth, googleProvider)
+    signInWithGoogle()
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
+        console.log(result.user);
+        const newUser = {
+          name: result.user.displayName,
+          email: result.user.email,
+          image: result.user.photoURL,
+        };
+        // const credential = GoogleAuthProvider.credentialFromResult(result);
+        // const token = credential.accessToken;
         // The signed-in user info.
-        const user = result.user;
-        console.log(user.displayName);
+        //const user = result.user;
+        console.log(newUser);
 
         //console.log(token);
         // IdP data available using getAdditionalUserInfo(result)

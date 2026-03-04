@@ -1,6 +1,10 @@
 import { useLoaderData } from "react-router";
+import { AuthContext } from "../contexts/AuthContext";
+import { use } from "react";
 
 const Users = () => {
+  // const { user } = use(AuthContext); --> check if a user could find the context
+  // console.log(user);
   const users = useLoaderData();
 
   return (

@@ -7,6 +7,7 @@ import Users from "../components/Users";
 import Posts from "../components/Posts";
 import PostDetails from "../components/PostDetails";
 import { postDetailsLoader, postsLoader, usersLoader } from "../utils/loaders";
+import PrivateRoute from "./PrivateRoute";
 
 const MainRouter = [
   {
@@ -17,7 +18,16 @@ const MainRouter = [
       { path: "/aboutus", Component: AboutUs },
       { path: "/signup", Component: SignUp },
       { path: "/login", Component: Login },
-      { path: "/users", Component: Users, loader: usersLoader },
+      {
+        path: "/users",
+        element: (
+          <PrivateRoute>
+            <Users></Users>
+          </PrivateRoute>
+        ),
+
+        loader: usersLoader,
+      },
       { path: "/posts", Component: Posts, loader: postsLoader },
       {
         path: "/posts/:id",
